@@ -1,38 +1,40 @@
-function Producto(nombreArg, pesoArg, stockArg){
-    this.nombre = nombreArg;
-    this.peso = pesoArg;
-    this.stock = stockArg;
-    this.cantidad = function() {console.log("Esta es la cantidad de stock: " + this.stock)}
-    this.venta = function(cantidad) {
-        if(cantidad > this.stock){
-            console.log("Cantidad insuficiente");
+function Autos(marca, modelo, color){
+    this.marca = marca;
+    this.modelo = modelo;
+    this.color = color;
+    this.vendido = false;
+    this.vender = function() {
+        this.vendido = true;
+    }
+    
+    this.disponibilidad = function() {
+        if(vendido){
+            console.log("Vehiculo no disponible");
         } 
         else {
-            this.stock = this.stock - cantidad;
+            console.log("Vehiculo disponible");
         }
       
     }
-    this.compra = function(cantidad) {
-        this.stock = this.stock + cantidad;
-    }
-    this.libre = true;
-}
-
-const mesa = new Producto("Mesa", 50, 10);
-mesa.cantidad();
-
-if("stock" in mesa){
-    if (mesa.stock > 0) {
-        alert(mesa.nombre);
-    }
-}
-
-mesa.venta (2);
-const silla = new Producto("Silla", 5, 20);
-silla.venta(3);
+}   
+// Defino objetos //
 
 
-//arrays
+const auto1 = new Autos("Ferrari", "Enzo", "Rojo");
+const auto2 = new Autos("Ferrari", "Enzo", "Blanco");
+const auto3 = new Autos("Ferrari", "Enzo", "Negro");
+const auto4 = new Autos("Ford", "Mustang", "Rojo");
+const auto5 = new Autos("Ford", "Mustang", "Azul");
+const auto6 = new Autos("Ford", "Mustang", "Amarillo");
+const auto7 = new Autos("Ford", "Raptor", "Azul");
+const auto8 = new Autos("Ford", "Raptor", "Rojo");
+const auto9 = new Autos("Ford", "Raptor", "Gris");
+const auto10 = new Autos("Chevrolet", "Camaro", "Amarillo");
+const auto11 = new Autos("Chevrolet", "Camaro", "Negro");
+const auto12 = new Autos("Chevrolet", "Camaro", "Blanco");
+
+
+/*arrays
 
 let miArray = [];
 let otroArray = [2,5,10,4];
@@ -40,3 +42,5 @@ let otroArray = [2,5,10,4];
 for (let i = 0; i < 4; i++){
     console.log(otroArray[i]);
 }
+
+*/
