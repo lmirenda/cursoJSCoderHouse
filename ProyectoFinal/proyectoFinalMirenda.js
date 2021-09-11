@@ -1,3 +1,10 @@
+inicializar() 
+
+function inicializar() {
+    document.getElementById("btnIngresarAutos").addEventListener("click", ingresarAutos);
+    document.getElementById("btnMostrarAutos").addEventListener("click", mostrarAutos);
+    document.getElementById("btnGuardarDatos").addEventListener("click", guardarDatos);
+}
 //Contruccion de objeto//
 class Autos {
     constructor(marca, color, precio, stock) {
@@ -32,23 +39,24 @@ const auto7 = new Autos("Nisan", "Gris", 190, 9);
 const auto8 = new Autos("Nisan", "Blanco", 200, 1);
 const auto9 = new Autos("Nisan", "Rojo", 210, 8);
 
-let marcaPrompt = prompt("Ingrese una marca de autos");
-let colorPrompt = prompt("Ingrese una color para el auto");
-let precioPrompt = parseInt(prompt("Ingrese una precio para el auto"));
-const auto10 = new Autos(marcaPrompt, colorPrompt, precioPrompt, 1);
-
-//Array//FG
 const arrayAutos = [auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9];
 
-//Agregar el objeto creado por el usuario al array
-arrayAutos.push(auto10);
+function ingresarAutos() {
+    let marcaPrompt = document.getElementById("autosMarca").value;
+    let colorPrompt = document.getElementById("autosColor").value;
+    let precioPrompt = parseInt(document.getElementById("autosPrecio").value);
+    let stockPrompt = parseInt(document.getElementById("autosStock").value);
+    const auto10 = new Autos(marcaPrompt, colorPrompt, precioPrompt, stockPrompt);
+
+    //Agregar el objeto creado por el usuario al array
+    arrayAutos.push(auto10);
+}
 
 //Listar todos los autos en stock
 function listarAutos(){
     for (const car of arrayAutos){
         if (car.stock > 0){console.log(car.marca+" "+car.color +" $"+car.precio);
-    }
-        
+        }   
     }
 }
 
@@ -64,4 +72,32 @@ function precioMax(n){
     console.log(resultado);
 }
 
+// Crear elementos manipulando el DOM con los objetos existentes
 
+//Creo nodo de tipo Elemento, con etiqueta UL
+let contenedor = document.createElement("ul");
+document.body.appendChild(contenedor);
+
+// Busco el primer elemento ul en el HTML
+let ULs = document.getElementsByTagName("ul");
+let autoUL = ULs[0];
+
+//Esribo en el HTML
+function mostrarAutos() {
+    for (const auto of arrayAutos) {
+        //Recorro y creo una lista <li> para cada el objeto del array. 
+        autoLI = document.createElement("li");
+        //En cada lista estribo la informacion que deseo mostrar en el html y la envio a la <ul> autosUL
+        autoLI.innerHTML = `<p> Marca: ${auto.marca}</p>
+                            <p> Color: ${auto.color}</p>
+                            <p> Precio: ${auto.precio}</p>
+                            <p> Stock: ${auto.stock}</p>`;
+        autoUL.appendChild(autoLI);
+    }
+}
+
+let arrayAutosGuardado;
+function guardarDatos() {
+    arrayAutosString = JSON.stringify(arrayAutos);
+    localStorage.setItem('Lista de autos', arrayAutosString);
+}
