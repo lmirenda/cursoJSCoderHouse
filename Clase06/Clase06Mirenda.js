@@ -38,7 +38,7 @@ const arrayAutos = [
 ]
 //Funcion Ingresar auto
 $("#btnIngresarAutos").on("click", function ingresarAutos() {
-    let marcaPrompt = document.getElementById("#autosMarca").value;
+    let marcaPrompt = document.getElementById("autosMarca").value;
     let colorPrompt = document.getElementById("autosColor").value;
     let precioPrompt = parseInt(document.getElementById("autosPrecio").value);
     let stockPrompt = parseInt(document.getElementById("autosStock").value);
