@@ -38,10 +38,10 @@ const arrayAutos = [
 ]
 //Funcion Ingresar auto
 $("#btnIngresarAutos").on("click", function ingresarAutos() {
-    let marcaPrompt = document.getElementById("autosMarca").value;
-    let colorPrompt = document.getElementById("autosColor").value;
-    let precioPrompt = parseInt(document.getElementById("autosPrecio").value);
-    let stockPrompt = parseInt(document.getElementById("autosStock").value);
+    let marcaPrompt = $("#autosMarca").val();
+    let colorPrompt = $("#autosColor").val();
+    let precioPrompt = +$("#autosPrecio").val();
+    let stockPrompt = +$("#autosStock").val();
     const auto = new Autos(marcaPrompt, colorPrompt, precioPrompt, stockPrompt);
 
     //Agregar el objeto creado por el usuario al array
@@ -72,12 +72,12 @@ function precioMax(n){
 // Crear elementos manipulando el DOM con los objetos existentes
 
 //Creo nodo de tipo Elemento, con etiqueta UL
-let contenedor = document.createElement("ul");
+/*let contenedor = document.createElement("ul");
 document.body.appendChild(contenedor);
 
 // Busco el primer elemento ul en el HTML
 let ULs = document.getElementsByTagName("ul");
-let autoUL = ULs[0];
+let autoUL = ULs[0];*/
 
 /*-Esribo en el HTML - Sustituido por metodo jQuery
 
