@@ -43,7 +43,10 @@ $("#btnIngresarAutos").on("click", function ingresarAutos() {
     let precioPrompt = +$("#autosPrecio").val();
     let stockPrompt = +$("#autosStock").val();
     const auto = new Autos(marcaPrompt, colorPrompt, precioPrompt, stockPrompt);
-
+    $("#autosMarca").val() = '';
+    $("#autosColor").val()='';
+    $("#autosPrecio").val()='';
+    $("#autosStock").val()='';
     //Agregar el objeto creado por el usuario al array
     arrayAutos.push(auto);
 });

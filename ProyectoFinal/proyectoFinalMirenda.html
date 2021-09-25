@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   
 </head>
 <body>
     <h1> Proyecto Final - Simulador de venta de autos</h1>
@@ -28,9 +29,9 @@
 
     </div>
 
-    <div id=divMostrarAuto>
-        <h2>Mostrar todos los autos</h2>
-        <input type="button" value="Mostrar todos" id="btnMostrarAutos">
+    <div id=Cargar>
+        <h2>Cargar todos los autos</h2>
+        <input type="button" value="Cargar desde API" id="btnCargar">
     </div>
 
     <div id="guardar">
@@ -39,7 +40,17 @@
     </div>
 
     <div id="autosMostrados">
-        <ul id="listaAutos"></ul>   
+       <table id="tablaAutos">
+           <thead>
+               <tr>
+                   <th>Marca</th>
+                   <th>Color</th>
+                   <th>Precio</th>
+                   <th>Stock</th>
+                   <th><button id="deleteButton">Eliminar</button></th>
+               </tr>
+           </thead>
+       </table>
     </div>
 
     <script src="proyectoFinalMirenda.js"></script>
