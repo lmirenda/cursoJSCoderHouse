@@ -1,8 +1,6 @@
 $( document ).ready(function() {
     console.log('El DOM esta listo')
-    
 });
-
 
 
 //Contruccion de objeto//
@@ -46,17 +44,36 @@ $("#btnIngresarAutos").on("click", function ingresarAutos() {
     let colorPrompt = $("#autosColor").val();
     let precioPrompt = +$("#autosPrecio").val();
     let stockPrompt = +$("#autosStock").val();
-    const auto = new Autos(marcaPrompt, colorPrompt, precioPrompt, stockPrompt);
-    $("#tablaAutos").append(`<tr class="autoRow">
-                        <td>${marcaPrompt}</td>
-                         <td>${colorPrompt}</td>
-                         <td>${precioPrompt}</td>
-                         <td>${stockPrompt}</td>
-                         <td><input type="button" class="deleteButton" value="X"></td>
-                         </tr>`);
-
-
-    //Agregar el objeto creado por el usuario al array
+    let clientePrompt = $("#autosCliente").val();
+    if (marcaPrompt && colorPrompt && !isNaN(precioPrompt) && !isNaN(stockPrompt)){
+        let autoTr = $("<tr class='autoRow'></tr>")
+               
+        let autoMarca = $("<td></td>").text(marcaPrompt);
+        let autoColor = $("<td></td>").text(colorPrompt);
+        let autoPrecio =$("<td></td>").text(precioPrompt);
+        let autoStock = $("<td></td>").text(stockPrompt);
+        let autoCliente = $("<td></td>").text(clientePrompt);
+        let autoOk = $("<td class='okCell'></td>").append("<i class='fa-solid fa-check'>")
+        let autoDelete = $("<td class='deleteCell'></td>").append("<i class='fa-solid fa-trash-can'>")
+                
+        autoDelete.click(function(){
+            var p = $(this).parent();
+            p.fadeOut(function() {
+                p.remove;
+            })
+        });
+        autoOk.click(function(){
+            var p = $(this).parent();
+            p.fadeOut(function(){
+                $("#autosAlquilados").append(p)
+                p.fadeIn();
+            });
+            $(this).remove();
+        })
+        autoTr.append(autoMarca, autoColor, autoPrecio, autoCliente, autoStock, autoOk, autoDelete);
+                $("#tablaAutos").append(autoTr);
+    }
+     //Agregar el objeto creado por el usuario al array
     arrayAutos.push(auto);
 
     //Clear a los inputs
@@ -64,55 +81,21 @@ $("#btnIngresarAutos").on("click", function ingresarAutos() {
     $("#autosColor").val('')
     $("#autosPrecio").val('')
     $("#autosStock").val('')
-    enableDelete;
 
 });
-
-
-//Listar todos los autos en stock
-function listarAutos(){
-    for (const car of arrayAutos){
-        if (car.stock > 0){console.log(car.marca+" "+car.color +" $"+car.precio);
-        }   
-    }
-}
-
-//Buscar marca de auto toyota
-function buscarToyota(){
-    var resultado = arrayAutos.filter(obj => {return obj.marca == 'Toyota'});
-    console.log(resultado);
-}
-
-//Buscar autos en base al precio
-function precioMax(n){
-    var resultado = arrayAutos.filter(obj => {return obj.precio <= n});
-    console.log(resultado);
-}
 
 let arrayAutosGuardado;
 $("#btnGuardarDatos").on("click", function guardarDatos() {
     arrayAutosString = JSON.stringify(arrayAutos);
     localStorage.setItem('Lista de autos', arrayAutosString);
+    console.log(arrayAutos);
 });
 
-
-const btnMostrarAutos = $("#btnMostrarAutos");
-btnMostrarAutos.on('click', function() {
-
-    for (const auto of arrayAutos) {
-        $("#tablaAutos").append(`<tr>
-                        <td>${auto.marca}</td>
-                         <td>${auto.color}</td>
-                         <td>${auto.precio}</td>
-                         <td>${auto.stock}</td>
-                         <td> <button> Comprar </button> 
-                         </tr>`);
-    }
-})
 
 //Cargar todos los autos desde la API//
 const btnCargar = $("#btnCargar");
 btnCargar.click(function() {
+    
     $.ajax({
         url: 'data.json',
         type: "GET",
@@ -123,38 +106,48 @@ btnCargar.click(function() {
         success: function(autos) {
            for(let auto of autos){
                arrayAutos.push(auto);
-               $("#tablaAutos").append(`<tr class="autoRow">
-                        <td>${auto.marca}</td>
-                         <td>${auto.color}</td>
-                         <td>${auto.precio}</td>
-                         <td>${auto.stock}</td>
-                         <td><input type="button" class="deleteButton" value="X"></td>
-                         </tr>`);
+               let autoTr = $("<tr class='autoRow'></tr>")
+               
+                let autoMarca = $("<td></td>").text(auto.marca);
+                let autoColor = $("<td></td>").text(auto.color);
+                let autoPrecio =$("<td></td>").text(auto.precio);
+                let autoStock = $("<td></td>").text(auto.stock);
+                let autoCliente = $("<td></td>").text(auto.cliente);
+                let autoOk = $("<td class='okCell'></td>").append("<i class='fa-solid fa-check'>")
+                let autoDelete = $("<td class='deleteCell'></td>").append("<i class='fa-solid fa-trash-can'>")
+                
+                autoDelete.click(function(){
+                    var p = $(this).parent();
+                    p.fadeOut(function() {
+                        p.remove;
+                    })
+                })
+                autoOk.click(function(){
+                    var p = $(this).parent();
+                    p.fadeOut(function(){
+                        $("#autosAlquilados").append(p)
+                        p.fadeIn();
+                    });
+                    $(this).remove();
+                })
+                autoTr.append(autoMarca, autoColor, autoPrecio, autoStock, autoCliente, autoOk, autoDelete);
+                $("#tablaAutos").append(autoTr);
            };
         }
   });
     btnCargar.prop("disabled", true);
 })
 
-const deleteBtn = $("#deleteButton");
-btnIngresarAutos.click(enableDelete);
-
-function enableDelete(){
-    let arrayDeleteButtons = document.querySelectorAll(".autoRow")
-    console.log(arrayDeleteButtons);
-    arrayDeleteButtons.forEach(function(btn) {
-        btn.addEventListener('click', deleteCheck);
+//Filtrar los elementos de la tabla de datos
+$("#miInput").on("keyup", function(){
+    var value = $(this).val().toLowerCase();
+    $("#tablaAutos tr").filter(function(){
+        $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1);
     });
-}
-
-
-function deleteCheck(e){
-    const item = e.target;
-    console.log("deleted")
-
-    if(item.classList[0]==="deleteButton"){
-        const itemParent = item.parentElement;
-        const itemParentParent = itemParent.parentElement;
-        itemParentParent.remove();
-    }
-}
+})
+$("#miInput2").on("keyup", function(){
+    var value = $(this).val().toLowerCase();
+    $("#autosAlquilados tr").filter(function(){
+        $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1);
+    });
+})

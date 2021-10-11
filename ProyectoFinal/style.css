@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 5% 20%;
+    background-color: rgb(191, 225, 247);
+}
+
+h1{
+    font-family: gotham;
+    color: #555;
+    size: 2rem;
+    padding-top: 10px 10px;
+    text-align: center;
+    text-shadow: lightslategray 1px;
+    font-weight: 500;
+}
+
+h2{
+    font-family: gotham;
+    color: #555;
+    font-size: 2rem; 
+    padding: 10px 10px;
+    text-align: center;
+}
+
+table{
+    font-family: arial sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 25px;
+    border-radius: 5px;
+}
+
+td , th{
+    text-align: center;
+    padding: 8px ;
+    font-size: 1.2rem;
+}
+
+tr:hover{
+    background-color: rgb(177, 223, 252);
+}
+
+
+.main {
+    height: 100%;
+    width: 100%;
+    background-color: ghostwhite;
+    padding: 5px 10px 10px 10px;
+    border-radius: 30px 30px 30px 30px;
+    box-shadow: 16px 22px 51px -24px lightslategray;
+    margin-top: 50px;
+}
+.maintitle {
+    height: 100%;
+    width: 100%;
+    background-color: ghostwhite;
+    padding: 5px 10px 10px 10px;
+    border-radius: 30px 30px 30px 30px;
+    box-shadow: 16px 22px 51px -24px lightslategray;
+    margin-bottom: 50px;
+}
+.submain {
+    display: inline-block;
+    height: 100%;
+    width: 49%;
+    background-color: ghostwhite;
+    padding: 5px 10px 10px 10px;
+    border-radius: 30px 30px 30px 30px;
+    box-shadow: 16px 22px 51px -24px lightslategray;
+    margin-top: 50px;
+    align-content: center;
+    margin: 0px;
+    vertical-align: top;
+    padding: 50px;
+    padding-top: 20px;
+}
+
+button{
+    border: none;
+    border-radius: 50px;
+    padding: 8px;
+    background-color: lightseagreen;
+    color: white;
+    margin-left: 25%;
+    width: 50%;
+}
+.btnGuardar{
+    width: auto;
+    width: auto;
+    margin-left: 0%;
+}
+button:hover{
+    background-color: rgb(35, 161, 155);
+}
+.okCell:hover{
+    background-color: rgb(1, 238, 40);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.deleteCell:hover{
+    background-color: rgb(238, 1, 40);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+hr{
+    margin: 15px 25px;
+}
+

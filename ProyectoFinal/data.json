@@ -3,54 +3,63 @@
         "marca":"Ford", 
         "color":"Negro", 
         "precio":105, 
-        "stock":5
+        "stock":5,
+        "cliente":"CoderHouse"
     },
     {
         "marca":"Ford", 
         "color":"Blanco", 
         "precio":110, 
-        "stock": 3
+        "stock": 3,
+        "cliente":"CoderHouse"
     },
     {
         "marca":"Ford", 
         "color":"Rojo", 
         "precio":100, 
-        "stock":3
+        "stock":3,
+        "cliente":"CoderHouse"
         },
     {
         "marca":"Toyota", 
         "color":"Negro", 
         "precio":155, 
-        "stock":6
+        "stock":6,
+        "cliente":"CoderHouse"
     },
     {
         "marca":"Toyota", 
         "color":"Azul", 
         "precio":150, 
-        "stock":7
+        "stock":7,
+        "cliente":"CoderHouse"
     },
     {
         "marca":"Toyota", 
         "color":"Gris", 
         "precio":175, 
-        "stock":2
+        "stock":2,
+        "cliente":"CoderHouse"
     },
     {
-        "marca":"Nisan", 
+        "marca":"Nissan", 
         "color":"Gris", 
         "precio":190, 
-        "stock":9
+        "stock":9,
+        "cliente":"CoderHouse"
     },
     {
         "marca":"Nissan", 
         "color":"Blanco", 
         "precio":200, 
-        "stock":1
+        "stock":1,
+        "cliente":"CoderHouse"
     },
     {
         "marca":"Nissan", 
         "color":"Rojo", 
         "precio":210, 
-        "stock":8
+        "stock":8,
+        "cliente":"CoderHouse"
     }
 ]
